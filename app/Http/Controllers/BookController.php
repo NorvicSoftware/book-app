@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Gender;
+use App\Models\Editorial;
 
 class BookController extends Controller
 {
@@ -21,7 +23,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $genders = Gender::all();
+        $editorials = Editorial::all();
+        return view('books.create', ['genders' => $genders, 'editorials' => $editorials]);
     }
 
     /**
@@ -29,7 +33,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->title = $request->title;
+        $book->subtitle = $request->subtitle;
+        $book->numberPage = $request->numberPage;
+        $book->language = $request->language;
+        $book->description = $request->description;
+        $book->status = $request->status;
+        $book->price = $request->price;
+        $book->gender_id = $request->gender_id;
+        $book->editorial_id = $request->editorial_id;
+        $book->save();
+        return redirect()->action([BookController::class, 'index']);
+
     }
 
     /**
@@ -45,7 +61,10 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $genders = Gender::all();
+        $editorials = Editorial::all();
+        $book = Book::find($id);
+        return view('books.edit', ['book' => $book, 'genders' => $genders, 'editorials' => $editorials]);
     }
 
     /**
@@ -53,7 +72,18 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $book = Book::find($id);
+        $book->title = $request->title;
+        $book->subtitle = $request->subtitle;
+        $book->numberPage = $request->numberPage;
+        $book->language = $request->language;
+        $book->description = $request->description;
+        $book->status = $request->status;
+        $book->price = $request->price;
+        $book->gender_id = $request->gender_id;
+        $book->editorial_id = $request->editorial_id;
+        $book->save();
+        return redirect()->action([BookController::class, 'index']);
     }
 
     /**

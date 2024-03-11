@@ -4,18 +4,22 @@
 </header>
 <body>
 <h2>EDITORIALES</h2>
+<a href="/editorials/create" class="styled-button">Crear nueva Editorial</a>
 <table>
     <tr>
         <td>Nombre</td>
         <td>Dirección</td>
         <td>Celular</td>
+        <td>Acción</td>
     </tr>
-
     @foreach($editorials as $editorial)
     <tr>
         <td>{{ $editorial->name }}</td>
         <td>{{ $editorial->address }}</td>
         <td>{{ $editorial->phone }}</td>
+        <td>
+            <a href="editorials/edit/{{ $editorial->id }}">Editar</a>
+        </td>
     </tr>
     @endforeach
 </table>
@@ -76,6 +80,21 @@
     /* Estilo para la etiqueta TD en filas impares (opcional) */
     tr:nth-child(odd) td {
         background-color: #f9f9f9;
+    }
+
+    .styled-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .styled-button:hover {
+        background-color: #45a049;
     }
 
 </style>

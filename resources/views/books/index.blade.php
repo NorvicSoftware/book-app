@@ -4,6 +4,7 @@
 </header>
 <body>
 <h2>LIBROS</h2>
+<a href="/books/create" class="styled-button">CREAR NUEVO LIBRO</a>
 <table>
     <tr>
         <td>Titulo</td>
@@ -14,6 +15,7 @@
         <td>Precio</td>
         <td>Genero</td>
         <td>Editorial</td>
+        <td>Acción</td>
     </tr>
     @foreach($books as $book)
         <tr>
@@ -25,6 +27,9 @@
             <td>{{ $book->price }}</td>
             <td>{{ $book->gender->name }}</td>
             <td>{{ $book->editorial->name }}</td>
+            <td>
+                <a href="books/edit/{{ $book->id }}">Editar</a>
+            </td>
         </tr>
     @endforeach
 </table>
@@ -86,6 +91,21 @@
     /* Estilo para la etiqueta TD en filas impares (opcional) */
     tr:nth-child(odd) td {
         background-color: #f9f9f9;
+    }
+
+    .styled-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .styled-button:hover {
+        background-color: #45a049;
     }
 
 </style>

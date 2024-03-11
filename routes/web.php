@@ -20,4 +20,15 @@ Route::get('/', function () {
 });
 
 Route::get('/editorials', [EditorialController::class, 'index'])->name('editorials.index');
+Route::get('editorials/create', [EditorialController::class, 'create'])->name('editorials.create');
+Route::post('editorials/create', [EditorialController::class, 'store'])->name('editorials.store');
+Route::get('editorials/edit/{id}', [EditorialController::class, 'edit'])->name('editorials.edit');
+Route::put('editorials/edit/{id}', [EditorialController::class, 'update'])->name('editorials.update');
+
+
 Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+Route::post('books/create', [BookController::class, 'store'])->name('books.store');
+Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
+Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update');
+

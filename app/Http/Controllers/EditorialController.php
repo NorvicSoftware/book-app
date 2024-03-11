@@ -21,7 +21,7 @@ class EditorialController extends Controller
      */
     public function create()
     {
-        //
+        return view('editorials.create');
     }
 
     /**
@@ -29,7 +29,12 @@ class EditorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $editorial = new Editorial();
+        $editorial->name = $request->name;
+        $editorial->address = $request->address;
+        $editorial->phone = $request->phone;
+        $editorial->save();
+        return redirect()->action([EditorialController::class, 'index']);
     }
 
     /**
@@ -45,7 +50,8 @@ class EditorialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editorial = Editorial::find($id);
+        return view('editorials.edit', ['editorial' => $editorial]);
     }
 
     /**
@@ -53,7 +59,15 @@ class EditorialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $editorial =  Editorial::find($id);
+        $editorial->name = $request->name;
+        $editorial->address = $request->address;
+        $editorial->phone = $request->phone;
+        $editorial->save();
+
+        return redirect()->action([EditorialController::class, 'index']);
+
+
     }
 
     /**
