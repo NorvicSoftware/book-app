@@ -29,6 +29,7 @@
             <td>{{ $book->editorial->name }}</td>
             <td>
                 <a href="books/edit/{{ $book->id }}">Editar</a>
+                <a href="books/show/{{ $book->id }}">Ver</a>
             </td>
         </tr>
     @endforeach

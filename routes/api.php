@@ -21,4 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/editorials', [ApiEditorialController::class, 'index']);
+Route::post('editorials/create', [ApiEditorialController::class, 'store']);
+Route::put('editorials/{id}/update', [ApiEditorialController::class, 'update']);
+
 Route::get('/books', [ApiBookController::class, 'index']);
+Route::get('books/show/{id}', [ApiBookController::class, 'show']);
+Route::delete('books/delete/{id}', [ApiBookController::class, 'destroy']);

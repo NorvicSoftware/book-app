@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::whereIn('status', ['activo', 'Bloqueado'])->get();
         return view('books.index', ['books' => $books]);
     }
 
@@ -53,7 +53,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::find($id);
+        return view('books.show', ['book' => $book]);
     }
 
     /**
@@ -91,6 +92,10 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = Book::find($id);
+        $book->status = "Eliminado";
+        $book->save();
+        //$book->delete();
+        return redirect()->action([BookController::class, 'index']);
     }
 }

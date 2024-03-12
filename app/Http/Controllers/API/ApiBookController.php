@@ -13,7 +13,8 @@ class ApiBookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+//        $books = Book::all();
+        $books = Book::whereIn('status', ['activo', 'Bloqueado'])->get();
         return response()->json($books);
 
     }
@@ -31,7 +32,8 @@ class ApiBookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::find($id);
+        return response()->json($book);
     }
 
     /**
@@ -47,6 +49,11 @@ class ApiBookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+//        $book = Book::find($id);
+//        $book->delete();
+        $book = Book::find($id);
+        $book->status = "Eliminado";
+        $book->save();
+        return response()->json(['response' => "El libro fue eliminado correctamente"]);
     }
 }

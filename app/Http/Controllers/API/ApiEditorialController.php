@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Editorial;
@@ -15,7 +16,6 @@ class ApiEditorialController extends Controller
     {
         $editorials = Editorial::all();
         return response()->json($editorials);
-
     }
 
     /**
@@ -23,7 +23,13 @@ class ApiEditorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $editorial = new Editorial();
+        $editorial->name = $request->name;
+        $editorial->address = $request->address;
+        $editorial->phone = $request->phone;
+        $editorial->save();
+        return response()->json(['response' => 'La editorial fue registrada correctamente']);
+
     }
 
     /**
@@ -39,7 +45,13 @@ class ApiEditorialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $editorial = Editorial::find($id);
+
+        $editorial->address = $request->address;
+        $editorial->phone = $request->phone;
+        $editorial->save();
+
+        return response()->json(['response' => 'La editorial fue actualizada correctamente', 'status' => true]);
     }
 
     /**
