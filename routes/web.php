@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Reports\ReportBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::get('/books/create', [BookController::class, 'create'])->name('books.crea
 Route::post('books/create', [BookController::class, 'store'])->name('books.store');
 Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
 Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update');
+
+Route::get('reports/books', [ReportBookController::class, 'report'])->name('reports.books.report');
 
 Route::get('books/show/{id}', [BookController::class, 'show'])->name('books.show');
 Route::delete('books/delete/{id}', [BookController::class, 'destroy'])->name('books.delete');

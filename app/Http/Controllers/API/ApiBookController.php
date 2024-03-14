@@ -5,18 +5,21 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Repositories\BookRepository;
 
 class ApiBookController extends Controller
 {
+    protected  $books;
+
+    public function __construct(BookRepository $books){
+        $this->books = $books;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-//        $books = Book::all();
-        $books = Book::whereIn('status', ['activo', 'Bloqueado'])->get();
-        return response()->json($books);
-
+        return response()->json($this->books->getBookActive());
     }
 
     /**

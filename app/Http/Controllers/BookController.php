@@ -6,16 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Gender;
 use App\Models\Editorial;
+use App\Repositories\BookRepository;
 
 class BookController extends Controller
 {
+    protected  $books;
+
+    public function __construct(BookRepository $books){
+        $this->books = $books;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $books = Book::whereIn('status', ['activo', 'Bloqueado'])->get();
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $this->books->getBookActive()]);
     }
 
     /**
