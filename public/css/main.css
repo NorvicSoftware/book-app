@@ -104,3 +104,7 @@ tr:nth-child(odd) td {
 .styled-button:hover {
     background-color: #45a049;
 }
+
+p {
+    color: #ef4444;
+}

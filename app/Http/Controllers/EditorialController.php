@@ -29,6 +29,15 @@ class EditorialController extends Controller
      */
     public function store(Request $request)
     {
+        //validacion previa antes de almacenar a mi base de datos
+        $request->validate(
+            [
+                'name' => 'required|max:50|min:5',
+                'address' => 'max:250',
+                'phone' => 'max:15'
+            ]
+        );
+
         $editorial = new Editorial();
         $editorial->name = $request->name;
         $editorial->address = $request->address;

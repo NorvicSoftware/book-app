@@ -38,6 +38,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+           'title'=> 'required|min:5|max:50|unique:books,title',
+           'subtitle' => 'required',
+           'numberPage' => 'required|numeric',
+           'status' => 'required|max:15',
+            'language' => 'min:5|max:50',
+            'gender_id' => 'required|numeric',
+            'editorial_id' => 'required|numeric',
+        ]);
+
         $book = new Book();
         $book->title = $request->title;
         $book->subtitle = $request->subtitle;
