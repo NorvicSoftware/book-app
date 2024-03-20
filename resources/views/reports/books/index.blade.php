@@ -1,6 +1,8 @@
 @extends('layout')
 @section('content')
     <h2>REPORTE DE LIBROS</h2>
+    <a href="{{ route('reports.books.pdf') }}" class="styled-button" target="_blank"> IMPRIMIR REPORTE PDF</a>
+    <a href="{{ route('reports.books.excel') }}" class="styled-button"> IMPRIMIR REPORTE EXCEL</a>
     <table>
         <tr>
             <th>Titulo</th>

@@ -34,6 +34,8 @@ Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit
 Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update');
 
 Route::get('reports/books', [ReportBookController::class, 'report'])->name('reports.books.report');
+Route::get('reports/books/pdf', [ReportBookController::class, 'reportPDF'])->name('reports.books.pdf');
+Route::get('reports/books/excel', [ReportBookController::class, 'reportExcel'])->name('reports.books.excel');
 
 Route::get('books/show/{id}', [BookController::class, 'show'])->name('books.show');
 Route::delete('books/delete/{id}', [BookController::class, 'destroy'])->name('books.delete');
