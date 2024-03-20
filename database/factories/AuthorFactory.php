@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Profile;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Author>
+ */
+class AuthorFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'full_name' => $this->faker->firstName() . ' ' . $this->faker->lastName(),
+            'code' => $this->faker->randomNumber(5),
+            'birth_date' => $this->faker->date(),
+            'country' => $this->faker->country(),
+            'profile_id' => Profile::all()->random()->id,
+
+        ];
+    }
+}
